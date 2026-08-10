@@ -3,15 +3,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const enterBtn = document.getElementById('enter-btn');
     const cottageBtn = document.getElementById('cottage-btn');
-    const lakeBtn = document.getElementById('lake-btn');
     const backBtn2 = document.getElementById('back-btn-2');
     const backBtn3 = document.getElementById('back-btn-3');
-    const backBtn4 = document.getElementById('back-btn-4');
 
     const screen1 = document.getElementById('screen1');
     const screen2 = document.getElementById('screen2');
     const screen3 = document.getElementById('screen3');
-    const screen4 = document.getElementById('screen4');
 
     function fadeToScreen(fromScreen, toScreen) {
         fromScreen.classList.remove('active');
@@ -28,20 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeToScreen(screen2, screen3);
     });
 
-    lakeBtn.addEventListener('click', function() {
-        fadeToScreen(screen2, screen4);
-    });
-
     backBtn2.addEventListener('click', function() {
         fadeToScreen(screen2, screen1);
     });
 
     backBtn3.addEventListener('click', function() {
         fadeToScreen(screen3, screen2);
-    });
-
-    backBtn4.addEventListener('click', function() {
-        fadeToScreen(screen4, screen2);
     });
 
     // Cursor Selector
