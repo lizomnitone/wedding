@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's Party Time!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicons/question.png">
+</head>
+<body>
+    <div id="container">
+        <!-- Background 1 with Enter Button -->
+        <div id="screen1" class="screen active">
+            <div id="title-card">
+                <img src="tristan-liz-title-card.png" alt="Title Card">
+            </div>
+            <button id="enter-btn">
+                <img src="assets/ui/explore-sign-deep-fryed.png" alt="Explore">
+            </button>
+        </div>
+
+        <!-- Parking Lot Screen -->
+        <div id="screen2" class="screen parking-lot">
+            <button id="back-btn-2" class="back-btn">← back</button>
+            <button id="cottage-btn" class="nav-btn">
+                cottage
+            </button>
+            <button id="lake-btn" class="nav-btn">
+                lake
+            </button>
+        </div>
+
+        <!-- Cottage Screen -->
+        <div id="screen3" class="screen cottage">
+            <button id="back-btn-3" class="back-btn">← back</button>
+        </div>
+
+        <!-- Lake Screen -->
+        <div id="screen4" class="screen lake">
+            <button id="back-btn-4" class="back-btn">← back</button>
+        </div>
+
+        <!-- Cursor Selector -->
+        <div id="cursor-selector">
+            <button class="cursor-btn" data-cursor="pink-bass" title="Pink">
+                <img src="assets/cursors/pink-bass.png" alt="Pink">
+            </button>
+            <button class="cursor-btn" data-cursor="green-bass" title="Green">
+                <img src="assets/cursors/green-bass.png" alt="Green">
+            </button>
+            <button class="cursor-btn" data-cursor="yellow-bass" title="Yellow">
+                <img src="assets/cursors/yellow-bass.png" alt="Yellow">
+            </button>
+            <button class="cursor-btn" data-cursor="rainbow-bass" title="Rainbow">
+                <img src="assets/cursors/rainbow-bass.png" alt="Rainbow">
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
