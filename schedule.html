@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - It's Party Time!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=2">
+    <link rel="icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=2">
+    <style>
+        #schedule-page {
+            background-image: url('assets/animations/cottage-deep-fry.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: block !important;
+            align-items: unset !important;
+            justify-content: unset !important;
+            overflow-y: scroll;
+            height: 100%;
+            position: relative;
+        }
+
+        #schedule-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .schedule-title {
+            text-align: left;
+            margin-bottom: 50px;
+            margin-top: 0;
+        }
+
+        .schedule-title img {
+            max-width: 60%;
+            max-height: 120px;
+            display: block;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        .schedule-container {
+            display: block;
+            position: relative;
+            z-index: 15;
+            width: 85%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 300px;
+            margin-bottom: 100px;
+            background-color: rgba(245, 230, 211, 0.98);
+            border-radius: 30px;
+            padding: 60px 50px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+            border: 3px solid #D32F2F;
+        }
+
+        .schedule-container h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 50px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .event-item {
+            text-align: center;
+            padding: 0;
+        }
+
+        .event-item-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8em;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .event-item-time {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .event-divider {
+            width: 60px;
+            height: 2px;
+            background-color: #D32F2F;
+            margin: 20px auto;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 50px;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            .timeline-marker {
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Schedule Page -->
+        <div id="schedule-page" class="screen active">
+            <a href="index.html" class="back-btn">← back</a>
+            <div class="schedule-container">
+                <div class="schedule-title">
+                    <img src="assets/images/titles/the-day.png" alt="The Day">
+                </div>
+
+                <div class="event-list">
+                    <div class="event-item">
+                        <div class="event-item-title">Ceremony</div>
+                        <div class="event-item-time">3:00 PM</div>
+                    </div>
+
+                    <div class="event-divider"></div>
+
+                    <div class="event-item">
+                        <div class="event-item-title">Photos</div>
+                        <div class="event-item-time">4:00 PM</div>
+                    </div>
+
+                    <div class="event-divider"></div>
+
+                    <div class="event-item">
+                        <div class="event-item-title">Cocktail Hour</div>
+                        <div class="event-item-time">4:15 PM – 5:30 PM</div>
+                    </div>
+
+                    <div class="event-divider"></div>
+
+                    <div class="event-item">
+                        <div class="event-item-title">Reception</div>
+                        <div class="event-item-time">5:30 PM</div>
+                    </div>
+
+                    <div class="event-divider"></div>
+
+                    <div class="event-item">
+                        <div class="event-item-title">Dinner</div>
+                        <div class="event-item-time">6:30 PM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

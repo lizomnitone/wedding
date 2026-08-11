@@ -98,8 +98,8 @@ html, body {
 }
 
 #page-in-progress img {
-    max-width: 60vw;
-    max-height: 50vh;
+    max-width: 45vw;
+    max-height: 37.5vh;
     display: block;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
@@ -806,17 +806,36 @@ html, body {
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    z-index: 100;
 }
 
 #cottage-btn {
-    left: 22%;
-    top: 83%;
-    transform: translate(50%, -50%);
+    left: 20%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+}
+
+#activities-btn {
+    left: 35%;
+    top: 75%;
+    transform: translate(-50%, -50%);
 }
 
 #accommodations-btn {
     left: 50%;
-    top: 83%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+}
+
+#food-btn {
+    left: 65%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+}
+
+#schedule-btn {
+    left: 80%;
+    top: 75%;
     transform: translate(-50%, -50%);
 }
 
@@ -879,6 +898,19 @@ html, body {
     animation: parking-lot-cycle 0.9s steps(3, end) infinite;
     background-size: cover;
     background-position: center;
+    position: relative;
+}
+
+.parking-lot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 5;
 }
 
 /* Lake Animation */
