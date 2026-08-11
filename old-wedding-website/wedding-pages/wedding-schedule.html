@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Schedule</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .schedule-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .timeline-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .day-timeline {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(51, 51, 51, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .day-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #333;
+        }
+        
+        .timeline-line {
+            display: none;
+        }
+        
+        .timeline-events {
+            position: relative;
+            padding: 0 10px;
+        }
+        
+        .event-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .event-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background-color: #333;
+            border: 3px solid #fffef7;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .event-content {
+            padding: 0;
+        }
+        
+        .event-time {
+            font-size: 0.9em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        
+        .event-title {
+            font-size: 1em;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .empty-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding.html">Wedding Dashboard</a>
+        <a href="wedding-gallery.html">Gallery</a>
+        <a href="wedding-axioms.html">Axioms</a>
+    </nav>
+    
+    <h1>Wedding Schedule</h1>
+    
+    <div class="schedule-section">
+        <div class="timeline-container" id="timeline-container">
+            <div class="empty-message">Loading schedule...</div>
+        </div>
+    </div>
+    
+    <script>
+        const DAYS = ['Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
+        
+        async function loadSchedule() {
+            try {
+                const response = await fetch('schedule.txt');
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    const schedule = parseSchedule(text);
+                    renderTimeline(schedule);
+                } else {
+                    document.getElementById('timeline-container').innerHTML = '<div class="empty-message">No schedule file found. Create schedule.txt in the same folder.</div>';
+                }
+            } catch (error) {
+                console.error('Error loading schedule:', error);
+                document.getElementById('timeline-container').innerHTML = '<div class="empty-message">Error loading schedule.</div>';
+            }
+        }
+        
+        function parseSchedule(text) {
+            // Format:
+            // Thursday
+            // 8:00 AM | Event Title
+            // 10:30 AM | Another Event
+            // ---
+            // Friday
+            // etc.
+            
+            const schedule = {};
+            
+            DAYS.forEach(day => {
+                schedule[day] = [];
+            });
+            
+            let currentDay = null;
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+            
+            lines.forEach(line => {
+                // Check if line is a day name
+                if (DAYS.includes(line)) {
+                    currentDay = line;
+                } else if (line === '---') {
+                    // Separator, do nothing
+                    return;
+                } else if (currentDay && line.includes('|')) {
+                    // Parse event
+                    const [time, title] = line.split('|').map(s => s.trim());
+                    if (time && title) {
+                        schedule[currentDay].push({
+                            time: time,
+                            title: title
+                        });
+                    }
+                }
+            });
+            
+            return schedule;
+        }
+        
+        function renderTimeline(schedule) {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+            
+            DAYS.forEach(day => {
+                const dayColumn = document.createElement('div');
+                dayColumn.className = 'day-timeline';
+                
+                let html = `
+                    <div class="day-title">${day}</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-events">
+                `;
+                
+                const events = schedule[day] || [];
+                
+                if (events.length === 0) {
+                    html += `<div class="empty-message">No events scheduled</div>`;
+                } else {
+                    events.forEach(event => {
+                        html += `
+                            <div class="event-item">
+                                <div class="event-dot"></div>
+                                <div class="event-content">
+                                    <div class="event-time">${event.time}</div>
+                                    <div class="event-title">${event.title}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                html += `
+                    </div>
+                `;
+                
+                dayColumn.innerHTML = html;
+                container.appendChild(dayColumn);
+            });
+        }
+        
+        // Load schedule on page load
+        document.addEventListener('DOMContentLoaded', loadSchedule);
+    </script>
+</body>
+</html>

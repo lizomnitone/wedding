@@ -89,6 +89,22 @@ html, body {
     image-rendering: crisp-edges;
 }
 
+#page-in-progress {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    z-index: 30;
+    pointer-events: auto;
+}
+
+#page-in-progress img {
+    max-width: 60vw;
+    max-height: 50vh;
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
 /* Activities Page */
 .activities-container {
     width: 90%;
@@ -796,6 +812,12 @@ html, body {
     left: 22%;
     top: 83%;
     transform: translate(50%, -50%);
+}
+
+#accommodations-btn {
+    left: 50%;
+    top: 83%;
+    transform: translate(-50%, -50%);
 }
 
 #lake-btn {

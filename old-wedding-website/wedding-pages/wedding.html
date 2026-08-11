@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Dashboard</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .dashboard-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .dashboard-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(51, 51, 51, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            border-color: #333;
+            background-color: #fffef7;
+        }
+        
+        .card-icon {
+            font-size: 3em;
+        }
+        
+        .card-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .card-description {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding-gallery.html">Gallery</a>
+        <a href="wedding-axioms.html">Axioms</a>
+        <a href="table-settings.html">Table Settings</a>
+        <a href="wedding-accommodations.html">Accommodations</a>
+        <a href="wedding-schedule.html">Schedule</a>
+        <a href="wedding-photography.html">Photography</a>
+        <a href="wedding-ceremony.html">Ceremony</a>
+        <a href="wedding-reception.html">Reception</a>
+    </nav>
+    
+    <h1>Wedding Dashboard</h1>
+    
+    <div class="dashboard-section">
+        <div class="dashboard-grid">
+            <a href="wedding-gallery.html" class="dashboard-card">
+               
+                <div class="card-title">Gallery</div>
+                <div class="card-description">Pinterest for decorations, meals, dress, etc.</div>
+            </a>
+            
+            <a href="wedding-axioms.html" class="dashboard-card">
+                
+                <div class="card-title">Axioms</div>
+                <div class="card-description">Philosophies for a fun wedding</div>
+            </a>
+            
+            <a href="table-settings.html" class="dashboard-card">
+                
+                <div class="card-title">Table Settings</div>
+                <div class="card-description">Plans for tables and table settings</div>
+            </a>
+            
+            <a href="wedding-accommodations.html" class="dashboard-card">
+                
+                <div class="card-title">Accommodations</div>
+                <div class="card-description">Find rentals in the Rivière Rouge & Lac Lynch region</div>
+            </a>
+            
+            <a href="wedding-schedule.html" class="dashboard-card">
+                
+                <div class="card-title">Schedule</div>
+                <div class="card-description">Thursday to Monday timeline</div>
+            </a>
+            
+            <a href="wedding-photography.html" class="dashboard-card">
+                
+                <div class="card-title">Photography</div>
+                <div class="card-description">Instant cameras, film, and photo capture plans</div>
+            </a>
+            
+            <a href="wedding-ceremony.html" class="dashboard-card">
+                
+                <div class="card-title">Ceremony</div>
+                <div class="card-description">Decorations, officiant, and ceremony music</div>
+            </a>
+            
+            <a href="wedding-reception.html" class="dashboard-card">
+                
+                <div class="card-title">Reception</div>
+                <div class="card-description">Dinner, toasts, dancing, and celebration</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

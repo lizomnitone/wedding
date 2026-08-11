@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .map-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .rental-popup {
+            font-family: 'Space Mono', monospace;
+            min-width: 250px;
+        }
+        
+        .popup-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .popup-image {
+            width: 100%;
+            max-width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .popup-details {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .popup-detail-line {
+            margin-bottom: 5px;
+        }
+        
+        .popup-label {
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .popup-link {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #333;
+            color: #fffef7;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .popup-link:hover {
+            background-color: #555;
+        }
+        
+        .leaflet-popup {
+            pointer-events: auto;
+        }
+        
+        .leaflet-popup-content-wrapper {
+            background-color: rgba(255, 254, 247, 0.98);
+            border-radius: 10px;
+            pointer-events: auto;
+        }
+        
+        .leaflet-popup-tip {
+            background-color: rgba(255, 254, 247, 0.95);
+        }
+        
+        .marker-icon {
+            background-color: #ff6b6b;
+            border: 2px solid #333;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding.html">Wedding Dashboard</a>
+        <a href="wedding-gallery.html">Gallery</a>
+        <a href="wedding-axioms.html">Axioms</a>
+    </nav>
+    
+    <h1>Accommodations</h1>
+    
+    <div class="map-section">
+        <div class="section-title">Rivière Rouge & Lac Lynch Region</div>
+        <div id="map"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        let map;
+        let markers = [];
+        let popupCloseTimeout;
+        
+        // Initialize map centered on Lac Lynch region
+        function initMap() {
+            map = L.map('map').setView([46.417, -74.866], 12);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            loadRentals();
+        }
+        
+        async function loadRentals() {
+            try {
+                // Try to load from rental-data.txt
+                const response = await fetch('rental-data.txt');
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    const rentals = parseRentalData(text);
+                    addMarkersToMap(rentals);
+                } else {
+                    console.log('No rental-data.txt found');
+                }
+            } catch (error) {
+                console.error('Error loading rentals:', error);
+            }
+        }
+        
+        function parseRentalData(text) {
+            // Format:
+            // Name | Lat, Lng | Cost | Capacity | Distance | Image URL | URL
+            // ---
+            
+            const rentals = [];
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+            
+            // Process each line that looks like a rental entry
+            lines.forEach(line => {
+                // Skip header/format lines
+                if (line.includes('===') || line.includes('Format:') || line.includes('Name |') || line === '---') {
+                    return;
+                }
+                
+                // Check if this line contains rental data
+                if (line.includes('|')) {
+                    const parts = line.split('|').map(p => p.trim());
+                    
+                    if (parts.length >= 7) {
+                        // Parse coordinates from "lat, lng" format
+                        const coords = parts[1].split(',').map(c => c.trim());
+                        const lat = parseFloat(coords[0]);
+                        const lng = parseFloat(coords[1]);
+                        
+                        if (!isNaN(lat) && !isNaN(lng)) {
+                            rentals.push({
+                                name: parts[0],
+                                lat: lat,
+                                lng: lng,
+                                cost: parts[2] || 'N/A',
+                                capacity: parts[3] || 'N/A',
+                                distance: parts[4] || 'N/A',
+                                imageUrl: parts[5] && parts[5].trim() !== '' ? parts[5] : null,
+                                airbnbUrl: parts[6] && parts[6].trim() !== '' ? parts[6] : null
+                            });
+                        }
+                    }
+                }
+            });
+            
+            return rentals;
+        }
+        
+        function addMarkersToMap(rentals) {
+            rentals.forEach(rental => {
+                if (rental.lat && rental.lng) {
+                    const marker = L.marker([rental.lat, rental.lng], {
+                        title: rental.name
+                    }).addTo(map);
+                    
+                    // Create popup content
+                    const popupContent = createPopupContent(rental);
+                    marker.bindPopup(popupContent, {
+                        maxWidth: 300,
+                        className: 'rental-popup'
+                    });
+                    
+                    // Show popup on hover and keep it open longer
+                    marker.on('mouseover', function() {
+                        clearTimeout(popupCloseTimeout);
+                        this.openPopup();
+                    });
+                    
+                    marker.on('mouseout', function() {
+                        // Delay closing so user can move to popup and click
+                        const self = this;
+                        popupCloseTimeout = setTimeout(() => {
+                            self.closePopup();
+                        }, 500);
+                    });
+                    
+                    // Keep popup open when hovering over it
+                    marker.on('popupopen', function() {
+                        const popup = this.getPopup();
+                        if (popup) {
+                            popup._container.addEventListener('mouseover', function() {
+                                clearTimeout(popupCloseTimeout);
+                            });
+                            popup._container.addEventListener('mouseout', function() {
+                                popupCloseTimeout = setTimeout(() => {
+                                    marker.closePopup();
+                                }, 500);
+                            });
+                        }
+                    });
+                    
+                    markers.push(marker);
+                }
+            });
+            
+            // Fit map to show all markers
+            if (markers.length > 0) {
+                const group = new L.featureGroup(markers);
+                map.fitBounds(group.getBounds().pad(0.1));
+            }
+        }
+        
+        function createPopupContent(rental) {
+            let html = `<div class="rental-popup">`;
+            html += `<div class="popup-title">${rental.name}</div>`;
+            
+            if (rental.imageUrl && rental.imageUrl !== 'N/A' && rental.imageUrl.trim() !== '') {
+                html += `<img src="${rental.imageUrl}" alt="${rental.name}" class="popup-image" onerror="this.style.display='none'">`;
+            }
+            
+            html += `<div class="popup-details">`;
+            if (rental.cost && rental.cost !== 'N/A') {
+                html += `<div class="popup-detail-line"><span class="popup-label">Cost:</span> ${rental.cost}</div>`;
+            }
+            if (rental.capacity && rental.capacity !== 'N/A') {
+                html += `<div class="popup-detail-line"><span class="popup-label">Capacity:</span> ${rental.capacity}</div>`;
+            }
+            if (rental.distance && rental.distance !== 'N/A') {
+                html += `<div class="popup-detail-line"><span class="popup-label">To Lac Lynch:</span> ${rental.distance}</div>`;
+            }
+            html += `</div>`;
+            
+            if (rental.airbnbUrl && rental.airbnbUrl !== 'N/A' && rental.airbnbUrl.trim() !== '') {
+                html += `<a href="${rental.airbnbUrl}" target="_blank" rel="noopener noreferrer" class="popup-link">View Listing →</a>`;
+            }
+            
+            html += `</div>`;
+            return html;
+        }
+        
+        // Initialize map on page load
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+</body>
+</html>

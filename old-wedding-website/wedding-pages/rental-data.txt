@@ -1,0 +1,29 @@
+=== Accommodation Data ===
+Format:
+Name | Lat | Lng | Cost | Capacity | Distance to Lac Lynch | Image URL | Airbnb URL
+
+
+The Cottage |  46.515650, -74.739193 | free | sleeps 6 | 0 km | | https://www.google.com/maps/place/Lac-Lynch,+QC+J0T+1W0/@46.5222358,-74.7377337,15z/data=!3m1!4b1!4m6!3m5!1s0x4cc5643dd2c58931:0xf8e09cb7732b05e9!8m2!3d46.522222!4d-74.727434!16s%2Fg%2F1tdz90qk?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D
+---
+
+Le Belle Vue |  46.515085, -74.741097 | $180/night | sleeps 8 | 0 km |  | https://www.google.com/maps/place/Lac-Lynch,+QC+J0T+1W0/@46.5222358,-74.7377337,15z/data=!3m1!4b1!4m6!3m5!1s0x4cc5643dd2c58931:0xf8e09cb7732b05e9!8m2!3d46.522222!4d-74.727434!16s%2Fg%2F1tdz90qk?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D
+---
+
+Melanie's Cottage | 46.518022, -74.730995 | free | sleeps 8 | 0 km | | | 
+--- 
+Anouk's Cottage | 46.513152, -74.745527 | free | sleeps 8 | 0 km | | |  
+---
+
+Rare Pearl on Lac Chaud | 46.489151, -74.761456 | $150/night | sleeps  8 | 10 km | | https://www.vrbo.com/en-ca/cottage-rental/p9882476?MDPCID=VRBO-META.HPA.WEB-ORGANIC.VR
+
+--- 
+
+Rio Rouge Motel | 46.427755, -74.889785 | $150/night | sleeps 2-4 | 20 km | | https://www.motelriviererouge.ca/a-propos 
+
+--- 
+
+Auberge Hotel Godard | 46.462509, -74.943818 | $130/night | sleeps 2-4 | 25 km | | https://www.aubergegodard.com
+
+---
+
+Hotel Nominangue Golf | 46.352844, -74.953692 | $185-200/night | sleeps 2-4 | 30 km | | https://hotelgolfnominingue.qc.ca/hotel/

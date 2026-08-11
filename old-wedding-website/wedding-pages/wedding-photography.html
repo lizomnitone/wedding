@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Photography Plans</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .photography-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .intro-text {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        th {
+            background-color: rgba(51, 51, 51, 0.1);
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid rgba(51, 51, 51, 0.2);
+            font-size: 1.1em;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+            color: #555;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .camera-name {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .cost-total {
+            font-weight: 700;
+            color: #CC5500;
+            font-size: 1.05em;
+        }
+        
+        .summary-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-left: 5px solid #CC5500;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .summary-box h3 {
+            margin-top: 0;
+            color: #CC5500;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .summary-item {
+            background-color: rgba(204, 85, 0, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .summary-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .summary-value {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #CC5500;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding.html">Wedding Dashboard</a>
+        <a href="wedding-gallery.html">Gallery</a>
+    </nav>
+    
+    <h1>Photography</h1>
+    
+    <div class="photography-section">
+        
+        <p class="intro-text">
+            instax+polaroid go: guest photos to take home, 35mm is for bride+groom pics, and event pics, digital cameras (pooled) for padding out the rest of it!
+        </p>
+        
+        <h3 style="font-size: 1.3em; color: #333; margin-top: 30px; margin-bottom: 20px;">Instant Photos for Guests (16 photos)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Camera/Film</th>
+                    <th>Photos per Pack</th>
+                    <th>Cost per Pack (CAD)</th>
+                    <th>Packs Needed</th>
+                    <th>Camera Cost (CAD)</th>
+                    <th>Total Cost (CAD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="camera-name">Polaroid GO Film</td>
+                    <td style="text-align: center;">16</td>
+                    <td style="text-align: center;">$26.00</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center;">$0.00 (owned)</td>
+                    <td class="cost-total">$26.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 style="font-size: 1.3em; color: #333; margin-top: 30px; margin-bottom: 20px;">Instant Photos - Wide Coverage (100 photos)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Camera/Film</th>
+                    <th>Photos per Pack</th>
+                    <th>Cost per Pack (CAD)</th>
+                    <th>Packs Needed</th>
+                    <th>Camera Cost (CAD)</th>
+                    <th>Total Cost (CAD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="camera-name">Instax Mini Film</td>
+                    <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">$8.50</td>
+                    <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">-</td>
+                    <td class="cost-total">$85.00</td>
+                </tr>
+                <tr>
+                    <td class="camera-name">Used Instax Mini Camera</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">$45.00 (used)</td>
+                    <td class="cost-total">$45.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 style="font-size: 1.3em; color: #333; margin-top: 30px; margin-bottom: 20px;">Keepsake Film Photos (48 photos)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Camera/Film</th>
+                    <th>Photos per Roll</th>
+                    <th>Cost per Roll (CAD)</th>
+                    <th>Rolls Needed</th>
+                    <th>Camera Cost (CAD)</th>
+                    <th>Total Cost (CAD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="camera-name">35mm Color Film (Kodak Gold 200)</td>
+                    <td style="text-align: center;">36</td>
+                    <td style="text-align: center;">$10.00</td>
+                    <td style="text-align: center;">2</td>
+                    <td style="text-align: center;">-</td>
+                    <td class="cost-total">$20.00</td>
+                </tr>
+                <tr>
+                    <td class="camera-name">Used 35mm SLR Camera</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">$75.00 (used)</td>
+                    <td class="cost-total">$75.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 style="font-size: 1.3em; color: #333; margin-top: 30px; margin-bottom: 20px;">Digital Backup (800 total captured, ~100 processed)</h3>
+        <p style="color: #666; margin-bottom: 15px;">Pooled vintage digital cameras from friends to capture comprehensive coverage and high-resolution backups. Process and print/organize approximately 100 selected shots.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Cost per Unit (CAD)</th>
+                    <th>Processing/Prints</th>
+                    <th>Total Cost (CAD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="camera-name">Digital Cameras (pooled)</td>
+                    <td style="text-align: center;">-</td>
+                    <td style="text-align: center;">$0.00</td>
+                    <td style="text-align: center;">100 photos @ ~$0.40 ea</td>
+                    <td class="cost-total">$40.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="summary-box">
+            <h3>Photography Summary</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">Polaroid GO</div>
+                    <div class="summary-value">16 photos</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Instax Mini</div>
+                    <div class="summary-value">100 photos</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">35mm Film</div>
+                    <div class="summary-value">48 photos</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Digital (processed)</div>
+                    <div class="summary-value">~100 photos</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Total Instant/Film/Digital</div>
+                    <div class="summary-value">~264 photos</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Total Photography Cost</div>
+                    <div class="summary-value">$291.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

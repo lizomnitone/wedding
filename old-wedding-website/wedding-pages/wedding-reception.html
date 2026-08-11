@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Reception</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .reception-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(51, 51, 51, 0.2);
+        }
+        
+        .music-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .music-container iframe {
+            border-radius: 12px;
+            min-width: 300px;
+        }
+        
+        @media (max-width: 768px) {
+            .music-container {
+                flex-direction: column;
+            }
+            
+            .music-container iframe {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding.html">Wedding Dashboard</a>
+        <a href="wedding-gallery.html">Gallery</a>
+        <a href="wedding-ceremony.html">Ceremony</a>
+        <a href="wedding-schedule.html">Schedule</a>
+        <a href="wedding-photography.html">Photography</a>
+    </nav>
+    
+    <h1>Reception</h1>
+    
+    <div class="reception-section" style="margin-bottom: 40px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #333;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Day</div>
+                <div style="font-size: 1.6em; font-weight: 700; color: #333;">Saturday</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #333;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Time</div>
+                <div style="font-size: 1.6em; font-weight: 700; color: #333;">6:00 PM</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #333;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Location</div>
+                <div style="font-size: 1.6em; font-weight: 700; color: #333;">Tent @ Cottage</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reception-section">
+        <h2 class="section-title">Reception Flow</h2>
+        <div style="background-color: rgba(255, 255, 255, 0.8); border-left: 5px solid #333; border-radius: 10px; padding: 25px; margin-bottom: 30px;">
+            <h3 style="margin: 0 0 20px 0; font-size: 1.15em; color: #333;">Evening Timeline</h3>
+            <div style="display: grid; gap: 12px; color: #555; line-height: 1.8;">
+                <div><strong>6:00 PM</strong> - Guest arrival & cocktail hour</div>
+                <div><strong>7:00 PM</strong> - Dinner service begins</div>
+                <div><strong>8:00 PM</strong> - Toasts & special moments</div>
+                <div><strong>9:00 PM</strong> - First dance & cake cutting</div>
+                <div><strong>9:30 PM</strong> - Dance party begins</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reception-section">
+        <h2 class="section-title">Roles</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Host/Hosts</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #333;">Matilda</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">DJ</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Photographer</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Catering</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Decor/Flowers</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">MC/Toastmaster</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reception-section">
+        <h2 class="section-title">Logistics</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Setup Time</div>
+                <div style="font-size: 1.1em; font-weight: 700; color: #333;">Saturday @ 2:00 PM</div>
+                <div style="font-size: 0.9em; color: #999; margin-top: 5px;">Setup crew: TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Guest Arrival</div>
+                <div style="font-size: 1.1em; font-weight: 700; color: #333;">6:00 PM</div>
+                <div style="font-size: 0.9em; color: #999; margin-top: 5px;">Cocktail hour begins</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Parking</div>
+                <div style="font-size: 1.1em; font-weight: 700; color: #333;">Along the street</div>
+                <div style="font-size: 0.9em; color: #999; margin-top: 5px;">Overflow: TBD</div>
+            </div>
+        </div>
+        <div style="background-color: rgba(255, 255, 255, 0.8); border-left: 5px solid #333; border-radius: 10px; padding: 25px; margin-bottom: 20px;">
+            <h3 style="margin: 0 0 15px 0; font-size: 1.15em; color: #333;">Reception Details</h3>
+            <div style="display: grid; gap: 12px; color: #555;">
+                <div><strong>Venue:</strong> Under tent at family cottage</div>
+                <div><strong>Dinner:</strong> TBD (menu & service style)</div>
+                <div><strong>Bar:</strong> TBD (open bar, beer & wine, etc.)</div>
+                <div><strong>Cake/Desserts:</strong> TBD</div>
+                <div><strong>Guest Count:</strong> Approximately 90 guests</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reception-section">
+        <h2 class="section-title">Music & Entertainment</h2>
+        <p style="color: #666; margin-bottom: 20px; text-align: center;">
+            <strong>Cocktail & Dinner Music:</strong> Background playlist during dinner and toasts
+        </p>
+        <p style="color: #666; margin-bottom: 20px; text-align: center;">
+            <strong>Dance Party Music:</strong> DJ will control the dance floor - requests welcome!
+        </p>
+        <div style="background-color: rgba(255, 255, 255, 0.8); border-left: 5px solid #333; border-radius: 10px; padding: 25px;">
+            <h3 style="margin: 0 0 15px 0; font-size: 1.1em; color: #333;">Music Playlist (Cocktail Hour)</h3>
+            <p style="color: #666; margin: 0;">
+                Playlist to be curated - check back for Spotify link!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

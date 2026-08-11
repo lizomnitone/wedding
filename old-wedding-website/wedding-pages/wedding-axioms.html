@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Axioms</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .axioms-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .axioms-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .axiom-item {
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-left: 4px solid #333;
+            border-radius: 8px;
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        .axiom-item:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding.html">Wedding Dashboard</a>
+    </nav>
+    
+    <h1>Wedding Axioms</h1>
+    
+    <div class="axioms-section">
+        <div class="section-title">T&L's Wedding Priorities</div>
+        <ul class="axioms-list" id="axioms-list">
+            <!-- Axioms will be added here -->
+        </ul>
+    </div>
+    
+    <script>
+        // Axioms list
+        const axioms = [ "1. Laid back & stress free wedding. It's supposed to be fun!", "2. Great food :)", "3. Doesn't break the bank", "4. Minimize work for family and friends", "5. Vibe and atmosphere that feels special and intentional", "6. People that will appreciate sharing this day with us!"
+            // Add your axioms here
+        ];
+        
+        // Render axioms
+        function renderAxioms() {
+            const container = document.getElementById('axioms-list');
+            container.innerHTML = '';
+            
+            axioms.forEach(axiom => {
+                const li = document.createElement('li');
+                li.className = 'axiom-item';
+                li.textContent = axiom;
+                container.appendChild(li);
+            });
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderAxioms();
+        });
+    </script>
+</body>
+</html>

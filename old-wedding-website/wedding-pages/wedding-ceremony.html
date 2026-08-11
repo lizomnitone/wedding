@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Ceremony</title>
+    <link rel="icon" type="image/png" href="../../assets/icons/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&family=Permanent+Marker&family=Sometype+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fffef7;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('../../assets/images/forest-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        nav {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        .ceremony-section {
+            background-color: rgba(245, 240, 230, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(51, 51, 51, 0.2);
+        }
+        
+        .decorations-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .decoration-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.05em;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .decoration-item:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .officiant-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-left: 5px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .officiant-title {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .officiant-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .music-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .music-container iframe {
+            border-radius: 12px;
+            min-width: 300px;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-photo {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            padding: 20px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -35px;
+            right: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .music-container {
+                flex-direction: column;
+            }
+            
+            .music-container iframe {
+                width: 100% !important;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .gallery-photo {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="wedding.html">Wedding Dashboard</a>
+        <a href="wedding-gallery.html">Gallery</a>
+        <a href="wedding-schedule.html">Schedule</a>
+        <a href="wedding-photography.html">Photography</a>
+        <a href="wedding-reception.html">Reception</a>
+    </nav>
+    
+    <h1>Ceremony</h1>
+    
+    <div class="ceremony-section" style="margin-bottom: 40px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #333;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Day</div>
+                <div style="font-size: 1.6em; font-weight: 700; color: #333;">Saturday</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #333;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Time</div>
+                <div style="font-size: 1.6em; font-weight: 700; color: #333;">3:00 PM</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #333;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Location</div>
+                <div style="font-size: 1.6em; font-weight: 700; color: #333;">Family Cottage</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ceremony-section">
+        <h2 class="section-title">Ceremony Flow</h2>
+        <div style="background-color: rgba(255, 255, 255, 0.8); border-left: 5px solid #333; border-radius: 10px; padding: 25px; margin-bottom: 30px;">
+            <h3 style="margin: 0 0 20px 0; font-size: 1.15em; color: #333;">Processional Order</h3>
+            <div style="display: grid; gap: 10px; color: #555; line-height: 1.8;">
+                <div>1. <strong>Groom's parents & groomsmen</strong></div>
+                <div>2. <strong>Best man</strong> (with groom)</div>
+                <div>3. <strong>Bridesmaids</strong></div>
+                <div>4. <strong>Maid of honour</strong></div>
+                <div>5. <strong>Ring bearer</strong> (Delphine)</div>
+                <div>6. <strong>Flower girl</strong> (Violette)</div>
+                <div>7. <strong>Bride</strong></div>
+            </div>
+        </div>
+        <div style="background-color: rgba(255, 255, 255, 0.8); border-left: 5px solid #333; border-radius: 10px; padding: 25px; margin-bottom: 30px;">
+            <h3 style="margin: 0 0 15px 0; font-size: 1.15em; color: #333;">Ceremony Elements</h3>
+            <div style="display: grid; gap: 12px; color: #555;">
+                <div><strong>Vows:</strong> Exchange personal vows</div>
+                <div><strong>Ring Exchange:</strong> Include ring bearer & flower girl in ceremony</div>
+                <div><strong>Ceremony Themes:</strong> <span style="color: #999;">TBD</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ceremony-section">
+        <h2 class="section-title">Roles</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Maid of Honour</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #333;">Aneeka or Roxanne <span style="font-size: 0.85em; color: #999;">(TBD)</span></div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Best Man</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Ring Bearer</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #333;">Delphine</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Flower Girl</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #333;">Violette</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Officiant</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #333;">Bernadine <span style="font-size: 0.85em; color: #999;">(TBD)</span></div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Musician</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD <span style="font-size: 0.85em; color: #999;">(or speaker)</span></div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Photographer</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #999;">TBD</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ceremony-section">
+        <h2 class="section-title">Logistics</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Rehearsal</div>
+                <div style="font-size: 1.1em; font-weight: 700; color: #333;">Friday @ 12:00 PM</div>
+                <div style="font-size: 0.9em; color: #999; margin-top: 5px;">Add to schedule</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Setup Time</div>
+                <div style="font-size: 1.1em; font-weight: 700; color: #333;">Saturday @ 12:00 PM</div>
+                <div style="font-size: 0.9em; color: #999; margin-top: 5px;">Volunteers: TBD</div>
+            </div>
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-left: 4px solid #333; padding: 20px; border-radius: 8px;">
+                <div style="font-size: 0.9em; color: #666; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Guest Arrival</div>
+                <div style="font-size: 1.1em; font-weight: 700; color: #333;">3:00 PM</div>
+                <div style="font-size: 0.9em; color: #999; margin-top: 5px;">Ceremony @ 3:30 PM</div>
+            </div>
+        </div>
+        <div style="background-color: rgba(255, 255, 255, 0.8); border-left: 5px solid #333; border-radius: 10px; padding: 25px; margin-bottom: 20px;">
+            <h3 style="margin: 0 0 15px 0; font-size: 1.15em; color: #333;">Additional Details</h3>
+            <div style="display: grid; gap: 12px; color: #555;">
+                <div><strong>Sound Transitions:</strong> Pre-ceremony & post-ceremony playlists (see music section)</div>
+                <div><strong>Refreshments:</strong> Cocktails & hors d'oeuvres before/after ceremony</div>
+                <div><strong>Parking:</strong> Along the street</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ceremony-section">
+        <h2 class="section-title">Decorations</h2>
+        <div class="decorations-list">
+            <div class="decoration-item">Wind Chimes</div>
+            <div class="decoration-item">Silk Fabrics</div>
+            <div class="decoration-item">Platform</div>
+        </div>
+        <h3 style="font-size: 1.2em; color: #333; margin: 30px 0 15px 0;">Inspiration Gallery</h3>
+        <div class="photo-gallery" id="decoration-gallery">
+            <!-- Photos will be loaded here by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Lightbox for viewing full-size images -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+    
+    <div class="ceremony-section">
+        <h2 class="section-title">Music</h2>
+        <p style="color: #666; margin-bottom: 20px; text-align: center;">
+            <strong>Ceremony Music:</strong> Pre-ceremony and post-ceremony playlists, plus live musician/speaker during ceremony
+        </p>
+        <div class="music-container">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6OaNBYvyyWCNdu2tOUK0jQ?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </div>
+    
+    <div class="ceremony-section">
+        <h2 class="section-title">Contingencies</h2>
+        <div style="background-color: rgba(255, 200, 200, 0.15); border-left: 5px solid #cc6666; border-radius: 10px; padding: 25px;">
+            <div style="font-size: 1.15em; font-weight: 700; color: #333; margin-bottom: 10px;">📍 Rainy Day Plan: Move ceremony under the tent!</div>
+            <p style="color: #555; margin: 0; line-height: 1.6;">If weather is unfavorable, the entire ceremony will move under the tent. Wind chimes and silk decorations will be secured accordingly.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Load decoration images filtered by "ceremony" category
+        async function loadDecorationPhotos() {
+            try {
+                // Fetch the categorization file
+                const response = await fetch('../../data/wedding-gallery-images/wedding-inspo-images/Decorations/Decorations-categories-2026-03-28-4.txt');
+                const categoriesText = await response.text();
+                
+                // Parse the categorization file to find ceremony photos
+                const ceremonyPhotos = [];
+                const lines = categoriesText.split('\n');
+                
+                lines.forEach(line => {
+                    // Skip header line
+                    if (line.includes('Generated') || line.includes('===')) return;
+                    
+                    // Parse lines in format: filename: category1, category2, category3
+                    const match = line.match(/^(.+?):\s(.+)$/);
+                    if (match) {
+                        const filename = match[1].trim();
+                        const categories = match[2].split(',').map(c => c.trim());
+                        
+                        // Check if "ceremony" is in the categories
+                        if (categories.includes('ceremony')) {
+                            ceremonyPhotos.push(filename);
+                        }
+                    }
+                });
+                
+                // Display the ceremony photos
+                const gallery = document.getElementById('decoration-gallery');
+                
+                if (ceremonyPhotos.length === 0) {
+                    gallery.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">No ceremony decoration photos found</p>';
+                    return;
+                }
+                
+                ceremonyPhotos.forEach(filename => {
+                    const img = document.createElement('img');
+                    img.className = 'gallery-photo';
+                    img.src = '../../data/wedding-gallery-images/wedding-inspo-images/Decorations/' + filename;
+                    img.alt = 'Ceremony decoration inspiration';
+                    img.onclick = function() {
+                        openLightbox(this.src);
+                    };
+                    gallery.appendChild(img);
+                });
+                
+            } catch (error) {
+                console.error('Error loading decoration photos:', error);
+                document.getElementById('decoration-gallery').innerHTML = '<p style="grid-column: 1 / -1; color: #999;">Unable to load photos</p>';
+            }
+        }
+        
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+        }
+        
+        // Close lightbox when clicking the X
+        document.querySelector('.lightbox-close').onclick = closeLightbox;
+        
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').onclick = function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        };
+        
+        // Load photos on page load
+        window.addEventListener('DOMContentLoaded', loadDecorationPhotos);
+    </script>
+</body>
+</html>
