@@ -40,9 +40,8 @@ html, body {
 
 #activities-page {
     position: relative;
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
+    height: 100%;
+    overflow-y: scroll;
     display: block;
     align-items: unset;
     justify-content: unset;
@@ -97,9 +96,9 @@ html, body {
     margin-top: 200px;
     z-index: 15;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 30px 40px;
-    padding: 0 0 40px 0;
+    padding: 0 0 1000px 0;
     pointer-events: auto;
 }
 
@@ -174,11 +173,479 @@ html, body {
     cursor: pointer;
 }
 
-/* Fishing label on top */
-.activity-card:has(.activity-images img[src*="liz-fish"]) .activity-label {
-    transform: translateY(80px);
+/* Ice cream images */
+.activity-images img[src*="ice-cream-1"] {
+    transform: scale(1.5) rotate(-15deg) translate(40px, 20px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="ice-cream-2"] {
+    transform: scale(1.4) rotate(12deg) translate(-35px, 10px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on ice cream activity card */
+.activity-card:has(.activity-images img[src*="ice-cream-1"]):hover .activity-images img[src*="ice-cream-1"] {
+    transform: scale(1.5) rotate(-15deg) translate(40px, 20px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="ice-cream-1"]):hover .activity-images img[src*="ice-cream-2"] {
+    transform: scale(1.4) rotate(12deg) translate(-35px, 10px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="ice-cream-1"]):hover {
+    cursor: pointer;
+}
+
+/* Ice cream label on top */
+.activity-card:has(.activity-images img[src*="ice-cream-1"]) .activity-label {
+    transform: translateY(100px);
     position: relative;
     z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="ice-cream-1"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Foraging images */
+.activity-images img[src*="blue-berries"] {
+    transform: scale(1.4) rotate(-12deg) translate(35px, 15px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="forest-floor"] {
+    transform: scale(1.3) rotate(5deg) translate(-5px, 25px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="raspberry"] {
+    transform: scale(1.5) rotate(18deg) translate(-45px, 10px);
+    position: absolute;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on foraging activity card */
+.activity-card:has(.activity-images img[src*="blue-berries"]):hover .activity-images img[src*="blue-berries"] {
+    transform: scale(1.4) rotate(-12deg) translate(35px, 15px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="blue-berries"]):hover .activity-images img[src*="forest-floor"] {
+    transform: scale(1.3) rotate(5deg) translate(-5px, 25px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="blue-berries"]):hover .activity-images img[src*="raspberry"] {
+    transform: scale(1.5) rotate(18deg) translate(-45px, 10px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="blue-berries"]):hover {
+    cursor: pointer;
+}
+
+/* Foraging label on top */
+.activity-card:has(.activity-images img[src*="blue-berries"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="blue-berries"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+
+/* Boating images */
+.activity-images img[src*="sailing"] {
+    transform: scale(1.5) rotate(25deg) translate(50px, 20px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="canoe"] {
+    transform: scale(1.4) rotate(-18deg) translate(-110px, 15px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on boating activity card */
+.activity-card:has(.activity-images img[src*="sailing"]):hover .activity-images img[src*="sailing"] {
+    transform: scale(1.5) rotate(25deg) translate(50px, 20px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="sailing"]):hover .activity-images img[src*="canoe"] {
+    transform: scale(1.4) rotate(-18deg) translate(-110px, 15px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="sailing"]):hover {
+    cursor: pointer;
+}
+
+/* Boating label on top */
+.activity-card:has(.activity-images img[src*="sailing"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="sailing"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Swimming images */
+.activity-images img[src*="lake-sunset"] {
+    transform: scale(1.4) rotate(-20deg) translate(40px, 15px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="swimming"] {
+    transform: scale(1.5) rotate(15deg) translate(-35px, 20px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on swimming activity card */
+.activity-card:has(.activity-images img[src*="lake-sunset"]):hover .activity-images img[src*="lake-sunset"] {
+    transform: scale(1.4) rotate(-20deg) translate(40px, 15px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="lake-sunset"]):hover .activity-images img[src*="swimming"] {
+    transform: scale(1.5) rotate(15deg) translate(-35px, 20px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="lake-sunset"]):hover {
+    cursor: pointer;
+}
+
+/* Swimming label on top */
+.activity-card:has(.activity-images img[src*="lake-sunset"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="lake-sunset"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Hiking images */
+.activity-images img[src*="forest"] {
+    transform: scale(1.45) rotate(-16deg) translate(35px, 18px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="brochet"] {
+    transform: scale(1.35) rotate(14deg) translate(-40px, 12px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on hiking activity card */
+.activity-card:has(.activity-images img[src*="forest"]):hover .activity-images img[src*="forest"] {
+    transform: scale(1.45) rotate(-16deg) translate(35px, 18px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="forest"]):hover .activity-images img[src*="brochet"] {
+    transform: scale(1.35) rotate(14deg) translate(-40px, 12px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="forest"]):hover {
+    cursor: pointer;
+}
+
+/* Hiking label on top */
+.activity-card:has(.activity-images img[src*="forest"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="forest"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Campfires images */
+.activity-images img[src*="campfire1"] {
+    transform: scale(1.5) rotate(22deg) translate(40px, 16px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="dock-fire"] {
+    transform: scale(1.35) rotate(-14deg) translate(-10px, 22px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="woodstove"] {
+    transform: scale(1.42) rotate(18deg) translate(-42px, 8px);
+    position: absolute;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on campfires activity card */
+.activity-card:has(.activity-images img[src*="campfire1"]):hover .activity-images img[src*="campfire1"] {
+    transform: scale(1.5) rotate(22deg) translate(40px, 16px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="campfire1"]):hover .activity-images img[src*="dock-fire"] {
+    transform: scale(1.35) rotate(-14deg) translate(-10px, 22px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="campfire1"]):hover .activity-images img[src*="woodstove"] {
+    transform: scale(1.42) rotate(18deg) translate(-42px, 8px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="campfire1"]):hover {
+    cursor: pointer;
+}
+
+/* Campfires label on top */
+.activity-card:has(.activity-images img[src*="campfire1"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="campfire1"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Stargazing images */
+.activity-images img[src*="stargazing1"] {
+    transform: scale(1.48) rotate(-18deg) translate(38px, 22px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="stargazing2"] {
+    transform: scale(1.38) rotate(16deg) translate(-38px, 14px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on stargazing activity card */
+.activity-card:has(.activity-images img[src*="stargazing1"]):hover .activity-images img[src*="stargazing1"] {
+    transform: scale(1.48) rotate(-18deg) translate(38px, 22px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="stargazing1"]):hover .activity-images img[src*="stargazing2"] {
+    transform: scale(1.38) rotate(16deg) translate(-38px, 14px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="stargazing1"]):hover {
+    cursor: pointer;
+}
+
+/* Stargazing label on top */
+.activity-card:has(.activity-images img[src*="stargazing1"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="stargazing1"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Watersports images */
+.activity-images img[src*="water-ski"] {
+    transform: scale(1.5) rotate(24deg) translate(42px, 20px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="tubing"] {
+    transform: scale(1.4) rotate(-16deg) translate(-38px, 16px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on watersports activity card */
+.activity-card:has(.activity-images img[src*="water-ski"]):hover .activity-images img[src*="water-ski"] {
+    transform: scale(1.5) rotate(24deg) translate(42px, 20px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="water-ski"]):hover .activity-images img[src*="tubing"] {
+    transform: scale(1.4) rotate(-16deg) translate(-38px, 16px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="water-ski"]):hover {
+    cursor: pointer;
+}
+
+/* Watersports label on top */
+.activity-card:has(.activity-images img[src*="water-ski"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="water-ski"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Birdwatching images */
+.activity-images img[src*="blue-jay"] {
+    transform: scale(1.46) rotate(-20deg) translate(36px, 18px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="hummingbird"] {
+    transform: scale(1.42) rotate(15deg) translate(-40px, 20px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on birdwatching activity card */
+.activity-card:has(.activity-images img[src*="blue-jay"]):hover .activity-images img[src*="blue-jay"] {
+    transform: scale(1.46) rotate(-20deg) translate(36px, 18px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="blue-jay"]):hover .activity-images img[src*="hummingbird"] {
+    transform: scale(1.42) rotate(15deg) translate(-40px, 20px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="blue-jay"]):hover {
+    cursor: pointer;
+}
+
+/* Birdwatching label on top */
+.activity-card:has(.activity-images img[src*="blue-jay"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="blue-jay"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Off-roading images */
+.activity-images img[src*="atv1"] {
+    transform: scale(1.5) rotate(26deg) translate(44px, 18px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="atv2"] {
+    transform: scale(1.4) rotate(-17deg) translate(-36px, 14px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on off-roading activity card */
+.activity-card:has(.activity-images img[src*="atv1"]):hover .activity-images img[src*="atv1"] {
+    transform: scale(1.5) rotate(26deg) translate(44px, 18px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="atv1"]):hover .activity-images img[src*="atv2"] {
+    transform: scale(1.4) rotate(-17deg) translate(-36px, 14px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="atv1"]):hover {
+    cursor: pointer;
+}
+
+/* Off-roading label on top */
+.activity-card:has(.activity-images img[src*="atv1"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="atv1"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Pastries/Croissant images */
+.activity-images img[src*="croissant1"] {
+    transform: scale(1.48) rotate(-19deg) translate(37px, 20px);
+    position: absolute;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.activity-images img[src*="croissant2"] {
+    transform: scale(1.43) rotate(17deg) translate(-39px, 16px);
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on pastries activity card */
+.activity-card:has(.activity-images img[src*="croissant1"]):hover .activity-images img[src*="croissant1"] {
+    transform: scale(1.48) rotate(-19deg) translate(37px, 20px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="croissant1"]):hover .activity-images img[src*="croissant2"] {
+    transform: scale(1.43) rotate(17deg) translate(-39px, 16px) scale(1.3);
+}
+
+.activity-card:has(.activity-images img[src*="croissant1"]):hover {
+    cursor: pointer;
+}
+
+/* Pastries label on top */
+.activity-card:has(.activity-images img[src*="croissant1"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="croissant1"]):hover .activity-label {
+    transform: translateY(100px) scale(1.2);
+}
+
+/* Fishing label on top */
+.activity-card:has(.activity-images img[src*="liz-fish"]) .activity-label {
+    transform: translateY(100px);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:has(.activity-images img[src*="liz-fish"]):hover .activity-label {
+    transform: translateY(80px) scale(1.2);
 }
 
 /* Back Buttons */
