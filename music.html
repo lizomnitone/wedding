@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Requests - It's Party Time!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=2">
+    <link rel="icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=2">
+    <style>
+        #music-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .music-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .music-title h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            color: #667eea;
+            margin: 0 0 10px 0;
+        }
+
+        .music-title p {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: #764ba2;
+            margin: 0;
+        }
+
+        .request-form {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.95);
+        }
+
+        .requests-list {
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .requests-list h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .request-item {
+            background: #f8f9ff;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .request-item .song-name {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: #333;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .request-item .artist-name {
+            font-family: 'Caveat', cursive;
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #999;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Music Page -->
+        <div id="music-page" class="screen active">
+            <a href="reception.html" class="back-btn">← back</a>
+            <div class="music-container">
+                <div class="music-title">
+                    <h1>🎵</h1>
+                    <h1>Song Requests</h1>
+                    <p>Build our wedding playlist!</p>
+                </div>
+
+                <form class="request-form" id="request-form">
+                    <div class="form-group">
+                        <label for="song-name">Song Name</label>
+                        <input type="text" id="song-name" name="song-name" placeholder="e.g., Shut Up and Dance" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="artist-name">Artist</label>
+                        <input type="text" id="artist-name" name="artist-name" placeholder="e.g., Walk the Moon" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Add to Playlist</button>
+                </form>
+
+                <div class="requests-list" id="requests-list">
+                    <h2>Requested Songs</h2>
+                    <div id="requests-container" class="empty-message">
+                        No requests yet. Be the first!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const form = document.getElementById('request-form');
+        const requestsContainer = document.getElementById('requests-container');
+        const STORAGE_KEY = 'wedding-playlist-requests';
+
+        function loadRequests() {
+            const requests = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            displayRequests(requests);
+        }
+
+        function displayRequests(requests) {
+            if (requests.length === 0) {
+                requestsContainer.innerHTML = '<div class="empty-message">No requests yet. Be the first!</div>';
+                return;
+            }
+
+            requestsContainer.innerHTML = requests.map((req, index) => `
+                <div class="request-item">
+                    <p class="song-name">${escapeHtml(req.song)}</p>
+                    <p class="artist-name">by ${escapeHtml(req.artist)}</p>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const song = document.getElementById('song-name').value.trim();
+            const artist = document.getElementById('artist-name').value.trim();
+
+            if (!song || !artist) return;
+
+            const requests = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            requests.push({ song, artist });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(requests));
+
+            form.reset();
+            document.getElementById('song-name').focus();
+            displayRequests(requests);
+        });
+
+        loadRequests();
+    </script>
+</body>
+</html>

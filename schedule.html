@@ -41,8 +41,8 @@
         }
 
         .schedule-title img {
-            max-width: 60%;
-            max-height: 120px;
+            max-width: 100%;
+            max-height: 180px;
             display: block;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
@@ -52,45 +52,76 @@
             display: block;
             position: relative;
             z-index: 15;
-            width: 85%;
-            max-width: 800px;
-            margin-left: auto;
+            width: 80%;
+            max-width: 900px;
+            margin-left: 10%;
             margin-right: auto;
-            margin-top: 300px;
+            margin-top: 200px;
             margin-bottom: 100px;
-            background-color: rgba(245, 230, 211, 0.98);
-            border-radius: 30px;
-            padding: 60px 50px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            background-color: transparent;
             box-sizing: border-box;
-            border: 3px solid #D32F2F;
+            padding-left: 80px;
+            padding-top: 0;
         }
 
-        .schedule-container h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.8em;
-            color: #333;
-            margin-bottom: 50px;
-            margin-top: 0;
-            letter-spacing: 1px;
-            text-align: center;
+        .schedule-container::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 60px;
+            bottom: 0;
+            width: 1px;
+            background-color: white;
+            z-index: 1;
+        }
+
+        .schedule-title {
+            position: absolute;
+            top: -150px;
+            left: 0%;
+            z-index: 30;
+            margin: 0;
+        }
+
+        .schedule-title img {
+            width: 20vw;
+            height: auto;
+            display: block;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
 
         .event-list {
             display: flex;
             flex-direction: column;
-            gap: 35px;
+            gap: 90px;
+            padding-top: 60px;
         }
 
         .event-item {
-            text-align: center;
+            text-align: left;
             padding: 0;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .event-item::before {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 3px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            z-index: 10;
         }
 
         .event-item-title {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.8em;
-            color: #333;
+            font-size: 1.6em;
+            color: white;
             font-weight: 600;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
@@ -99,15 +130,8 @@
         .event-item-time {
             font-family: 'DM Serif Display', serif;
             font-size: 1.1em;
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             font-style: italic;
-        }
-
-        .event-divider {
-            width: 60px;
-            height: 2px;
-            background-color: #D32F2F;
-            margin: 20px auto;
         }
 
         @media (max-width: 768px) {
@@ -135,7 +159,7 @@
             <a href="index.html" class="back-btn">← back</a>
             <div class="schedule-container">
                 <div class="schedule-title">
-                    <img src="assets/images/titles/the-day.png" alt="The Day">
+                    <img src="assets/images/titles/schedule-title.png" alt="Schedule">
                 </div>
 
                 <div class="event-list">
@@ -144,28 +168,20 @@
                         <div class="event-item-time">3:00 PM</div>
                     </div>
 
-                    <div class="event-divider"></div>
-
                     <div class="event-item">
                         <div class="event-item-title">Photos</div>
                         <div class="event-item-time">4:00 PM</div>
                     </div>
-
-                    <div class="event-divider"></div>
 
                     <div class="event-item">
                         <div class="event-item-title">Cocktail Hour</div>
                         <div class="event-item-time">4:15 PM – 5:30 PM</div>
                     </div>
 
-                    <div class="event-divider"></div>
-
                     <div class="event-item">
                         <div class="event-item-title">Reception</div>
                         <div class="event-item-time">5:30 PM</div>
                     </div>
-
-                    <div class="event-divider"></div>
 
                     <div class="event-item">
                         <div class="event-item-title">Dinner</div>

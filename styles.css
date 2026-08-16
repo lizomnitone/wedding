@@ -107,13 +107,14 @@ html, body {
 
 /* Activities Page */
 .activities-container {
-    width: 90%;
-    margin-left: 5%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 200px;
     z-index: 15;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px 40px;
+    gap: 80px 40px;
     padding: 0 0 1000px 0;
     pointer-events: auto;
 }
@@ -835,6 +836,12 @@ html, body {
 
 #schedule-btn {
     left: 80%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+}
+
+#reception-btn {
+    left: 95%;
     top: 75%;
     transform: translate(-50%, -50%);
 }

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reception - It's Party Time!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=2">
+    <link rel="icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=2">
+    <style>
+        #reception-page {
+            background-image: url('assets/animations/inside-tent.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: block !important;
+            align-items: unset !important;
+            justify-content: unset !important;
+            overflow-y: scroll;
+            height: 100%;
+            position: relative;
+        }
+
+        #reception-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: transparent;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .reception-photos {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+        }
+
+        .reception-photo {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        /* Table items - center area */
+        .reception-photo:has(img[src*="dinner"]) {
+            bottom: 25%;
+            left: 55%;
+            width: 220px;
+            height: 220px;
+            transform: rotate(15deg);
+        }
+
+        .reception-photo:has(img[src*="drinks"]) {
+            bottom: 25%;
+            left: 67%;
+            width: 220px;
+            height: 220px;
+            transform: rotate(15deg);
+        }
+
+        .reception-photo:has(img[src*="toast"]) {
+            top: 53%;
+            left: 25%;
+            width: 120px;
+            height: 120px;
+            transform: rotate(-15deg);
+        }
+
+        .reception-photo:has(img[src*="cake"]) {
+            top: 55%;
+            left: 50%;
+            width: 180px;
+            height: 280px;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Barbot - left corner */
+        .reception-photo:has(img[src*="barbot"]) {
+            bottom: 25%;
+            left: 3%;
+            top: auto;
+            transform: rotate(-30deg);
+        }
+
+        /* Dancing */
+        .reception-photo:has(img[src*="dancing"]) {
+            top: 0%;
+            left: 70%;
+            transform: translate(-50%, 0);
+        }
+
+          /* Speakers - back right */
+        .reception-photo:has(img[src*="music"]) {
+            top: 20%;
+            left: 8%;
+            width: 480px;
+            height: 280px;
+            transform: none;
+        }
+
+        .reception-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            border-radius: 15px;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            animation: photo-cycle 0.9s steps(3, end) infinite;
+        }
+
+        .reception-photo:hover img {
+            transform: scale(1.5) rotate(8deg);
+            filter: drop-shadow(0 0 40px rgb(223, 236, 119)) drop-shadow(0 0 60px rgba(255, 255, 100, 0.6)) brightness(1.3);
+        }
+
+        .reception-photo img.rotated-90 {
+            transform: rotate(90deg);
+        }
+
+        .reception-photo img.rotated-180 {
+            transform: rotate(180deg);
+        }
+
+        .reception-photo img.rotated-270 {
+            transform: rotate(270deg);
+        }
+
+        .photo-label {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            font-size: 36px;
+            font-weight: 700;
+            color: #133441;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 4px rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+            white-space: nowrap;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: photo-cycle 0.9s steps(3, end) infinite;
+            transition: ;
+        }
+
+        .reception-photo:hover .photo-label {
+            transform: translate(-50%, -50%) scale(1.5) rotate(8deg);
+        }
+
+        .reception-title {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            z-index: 20;
+        }
+
+        .reception-title img {
+            width: 650px;
+            height: auto;
+            display: block;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        @keyframes photo-cycle {
+            0% {
+                opacity: 1;
+            }
+            33.33% {
+                opacity: 1;
+            }
+            66.66% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #menu-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #menu-modal.active {
+            display: flex;
+        }
+
+        #menu-modal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        #lightswitch {
+            position: absolute;
+            cursor: pointer;
+            z-index: 100;
+            width: 100px;
+            height: 100px;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        #lightswitch img {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            transition: transform 0.2s ease;
+        }
+
+        #lightswitch:hover img {
+            transform: scale(1.1);
+        }
+
+        #reception-page.lights-off {
+            animation: lights-off-cycle 9s steps(3, end) infinite;
+        }
+
+        @keyframes lights-off-cycle {
+            0% {
+                background-image: url('reception-off.png');
+            }
+            33.33% {
+                background-image: url('reception-off-2.png');
+            }
+            66.66% {
+                background-image: url('reception-off-3.png');
+            }
+            100% {
+                background-image: url('reception-off.png');
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Reception Page -->
+        <div id="reception-page" class="screen active">
+            <a href="index.html" class="back-btn">← back</a>
+            <div class="reception-title">
+                <img src="reception.png" alt="Reception">
+            </div>
+            <button id="lightswitch" title="Toggle lights" style="right: 30%; top: 40%;">
+                <img src="lightswitch-on.png" alt="Lightswitch">
+            </button>
+
+            <div class="reception-photos">
+                <div class="reception-photo">
+                    <img src="music-2.png" alt="Music">
+                    <span class="photo-label">music</span>
+                </div>
+                <div class="reception-photo">
+                    <img src="toast-2.png" alt="Toast">
+                    <span class="photo-label">toasts</span>
+                </div>
+                <div class="reception-photo">
+                    <img src="drinks-2.png" alt="Drinks">
+                    <span class="photo-label">drinks</span>
+                </div>
+                <div class="reception-photo">
+                    <img src="dinner-2.png" alt="Dinner">
+                    <span class="photo-label">dinner</span>
+                </div>
+                <div class="reception-photo">
+                    <img src="cake-2.png" alt="Cake">
+                    <span class="photo-label">cake</span>
+                </div>
+                <div class="reception-photo">
+                    <img src="dancing-2.png" alt="Dancing">
+                    <span class="photo-label">dancing</span>
+                </div>
+                <div class="reception-photo">
+                    <img src="barbot-3.png" alt="Barbot">
+                    <span class="photo-label">barbot</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Modal -->
+        <div id="menu-modal">
+            <img id="menu-image" src="" alt="Menu">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const menuModal = document.getElementById('menu-modal');
+        const menuImage = document.getElementById('menu-image');
+
+        document.querySelectorAll('.reception-photo').forEach(photo => {
+            let rotationState = 0;
+            const img = photo.querySelector('img');
+
+            photo.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                if (img.src.includes('music')) {
+                    window.location.href = 'music.html';
+                } else if (img.src.includes('dinner')) {
+                    menuImage.src = 'wedding-menu.png';
+                    menuModal.classList.add('active');
+                } else if (img.src.includes('drinks')) {
+                    menuImage.src = 'drink-menu.png';
+                    menuModal.classList.add('active');
+                } else if (img.src.includes('cake')) {
+                    menuImage.src = 'cake-menu.png';
+                    menuModal.classList.add('active');
+                } else {
+                    rotationState = (rotationState + 1) % 4;
+                    img.classList.remove('rotated-90', 'rotated-180', 'rotated-270');
+                    if (rotationState === 1) img.classList.add('rotated-90');
+                    else if (rotationState === 2) img.classList.add('rotated-180');
+                    else if (rotationState === 3) img.classList.add('rotated-270');
+                }
+            });
+        });
+
+        menuModal.addEventListener('click', () => {
+            menuModal.classList.remove('active');
+        });
+
+        const lightswitch = document.getElementById('lightswitch');
+        const lightswitchImg = lightswitch.querySelector('img');
+        const receptionPage = document.getElementById('reception-page');
+        let lightsAreOn = true;
+
+        lightswitch.addEventListener('click', (e) => {
+            e.stopPropagation();
+            lightsAreOn = !lightsAreOn;
+
+            if (lightsAreOn) {
+                lightswitchImg.src = 'lightswitch-on.png';
+                receptionPage.classList.remove('lights-off');
+            } else {
+                lightswitchImg.src = 'lightswitch-off.png';
+                receptionPage.classList.add('lights-off');
+            }
+        });
+    </script>
+</body>
+</html>
