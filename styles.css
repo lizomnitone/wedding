@@ -903,6 +903,7 @@ html, body {
 
 .parking-lot {
     animation: parking-lot-cycle 0.9s steps(3, end) infinite;
+    background-image: url('assets/animations/parking-lot-deep-fry.png');
     background-size: cover;
     background-position: center;
     position: relative;

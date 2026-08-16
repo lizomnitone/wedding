@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's Party Time! - Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=3">
+    <link rel="shortcut icon" type="image/png" href="assets/cursors/rainbow-bass.png?v=3">
+    <style>
+        #login-screen {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: entrance-cycle 1.2s steps(4, end) infinite;
+            background-size: cover;
+            background-position: center;
+        }
+
+        #login-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 20;
+            background: transparent;
+            padding: 50px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-container h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            color: #e84438;
+            margin: 0 0 10px 0;
+        }
+
+        .login-container h1:first-child {
+            font-size: 60px;
+            margin-bottom: 5px;
+        }
+
+        .login-container p {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: #e84438;
+            margin: 0 0 30px 0;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .login-form input {
+            padding: 12px;
+            border: 2px solid #e84438;
+            border-radius: 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #e84438;
+        }
+
+        .login-form button {
+            padding: 15px;
+            background: #e84438;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .login-form button:hover {
+            transform: scale(1.05);
+        }
+
+        .login-form button:active {
+            transform: scale(0.95);
+        }
+
+        .error-message {
+            color: #e84438;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        @keyframes entrance-cycle {
+            0% {
+                background-image: url('assets/animations/entrance-deep-fry.png');
+            }
+            25% {
+                background-image: url('assets/animations/entrance-deep-fry-1.png');
+            }
+            50% {
+                background-image: url('assets/animations/entrance-deep-fry-2.png');
+            }
+            75% {
+                background-image: url('assets/animations/entrance-deep-fry-3.png');
+            }
+            100% {
+                background-image: url('assets/animations/entrance-deep-fry.png');
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Login Screen -->
+        <div id="login-screen">
+            <div class="login-container">
+                <h1>It's Party Time!</h1>
+                <p>Enter password</p>
+                <form class="login-form" id="login-form">
+                    <input type="password" id="password-input" placeholder="Password" required>
+                    <button type="submit">Enter</button>
+                    <div class="error-message" id="error-message">Wrong password!</div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Cursor Selector -->
+        <div id="cursor-selector">
+            <button class="cursor-btn" data-cursor="pink-bass" title="Pink">
+                <img src="assets/cursors/pink-bass.png" alt="Pink">
+            </button>
+            <button class="cursor-btn" data-cursor="green-bass" title="Green">
+                <img src="assets/cursors/green-bass.png" alt="Green">
+            </button>
+            <button class="cursor-btn" data-cursor="yellow-bass" title="Yellow">
+                <img src="assets/cursors/yellow-bass.png" alt="Yellow">
+            </button>
+            <button class="cursor-btn" data-cursor="rainbow-bass" title="Rainbow">
+                <img src="assets/cursors/rainbow-bass.png" alt="Rainbow">
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const CORRECT_PASSWORD = 'goose';
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (password === CORRECT_PASSWORD) {
+                sessionStorage.setItem('wedding-authenticated', 'true');
+                window.location.href = 'welcome.html';
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        });
+
+        if (sessionStorage.getItem('wedding-authenticated') === 'true') {
+            window.location.href = 'welcome.html';
+        }
+
+        // Cursor Selector
+        const cursorBtns = document.querySelectorAll('.cursor-btn');
+        const defaultCursor = 'pink-bass';
+
+        document.body.classList.add(`cursor-${defaultCursor}`);
+        document.querySelector(`[data-cursor="${defaultCursor}"]`).classList.add('active');
+
+        cursorBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cursorName = this.getAttribute('data-cursor');
+
+                cursorBtns.forEach(b => {
+                    document.body.classList.remove(`cursor-${b.getAttribute('data-cursor')}`);
+                    b.classList.remove('active');
+                });
+
+                document.body.classList.add(`cursor-${cursorName}`);
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

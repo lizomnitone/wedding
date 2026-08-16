@@ -1,5 +1,9 @@
 // Wedding Website - Fade Transition
 
+if (sessionStorage.getItem('wedding-authenticated') !== 'true' && !window.location.href.includes('login.html')) {
+    window.location.href = 'login.html';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const cottageBtn = document.getElementById('cottage-btn');
     const backBtn3 = document.getElementById('back-btn-3');
